@@ -32,7 +32,7 @@ if ($factor < 0.6) {
     $offset = 0;
 }
 $css = trim(str_replace(array("\n","'"), array("","\'"), file_get_contents(TERRIFIC . 'css/embed/comments.css')));
-        
+$script = trim(str_replace(array("\n","'"), array("","\'"), '<script type="text/javascript">'.file_get_contents(TERRIFIC . 'js/core/embed.js').'</script>'));       
 header('Content-Type: text/javascript');
 ?>
 document.write('<style type="text/css">');
@@ -44,3 +44,4 @@ document.write('<img src="<?= config('application.domain') ?><?= config('applica
 document.write('<div class="st-def" style="top:<?= round($comment['y']*$factor+$offset) ?>px;left:<?= round($comment['x']*$factor+$offset) ?>px;"><a href="javascript:;" class="dot"><span class="nr"><?= $comment['nr'] ?></span></a></div>');
 <? } ?>
 document.write('</div>');
+document.write('<?=$script ?>')
